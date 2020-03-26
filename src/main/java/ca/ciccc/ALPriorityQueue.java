@@ -19,13 +19,14 @@ public class ALPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
     return this.entries.size();
   }
 
-  public boolean isEmapy() {
+  @Override
+  public boolean isEmpty() {
     return size() == 0;
   }
 
   @Override
-  public Entry<K, V> enqueue(K key, V value) throws IllegalArgumentException {
-    Entry<K, V> entry = new Entry<K, V>(key, value);
+  public Entry<K, V> enqueue(Comparable key, Object value) throws IllegalArgumentException {
+    Entry<K, V> entry = new Entry<K, V>((K)key, (V)value);
 
     try {
       entries.add(entry);
@@ -42,10 +43,17 @@ public class ALPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
     return this.entries.get(this.size() -1);
   }
 
-  public Entry<K, V> dequeMin() {
+  @Override
+  public Entry<K, V> dequeueMin() {
     if (isEmpty()) {
       return null;
     }
     return this.entries.get(this.size() -1);
+  }
+
+  @Override
+  public VCPriorityQueue merge(VCPriorityQueue other) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }
