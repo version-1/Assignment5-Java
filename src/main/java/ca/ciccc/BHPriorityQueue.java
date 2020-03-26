@@ -15,6 +15,10 @@ public class BHPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
     this.entries = new ArrayList<Entry<K, V>>();
   }
 
+  public BHPriorityQueue(List<Entry<K, V>> entries) {
+    this.entries = entries;
+  }
+
   public int size() {
     return this.entries.size();
   }
@@ -52,7 +56,10 @@ public class BHPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
 
   @Override
   public VCPriorityQueue merge(VCPriorityQueue other) {
-    // TODO Auto-generated method stub
-    return null;
+    for (int i = 0; i < other.size(); i++ ) {
+      Entry entry = other.dequeueMin();
+      enqueue(entry.getKey(), entry.getValue());
+    }
+    return this;
   }
 }

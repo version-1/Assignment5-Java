@@ -15,6 +15,10 @@ public class ALPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
     this.entries = new ArrayList<Entry<K, V>>();
   }
 
+  public ALPriorityQueue(List<Entry<K, V>> entries) {
+    this.entries = entries;
+  }
+
   public int size() {
     return this.entries.size();
   }
@@ -48,12 +52,21 @@ public class ALPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
     if (isEmpty()) {
       return null;
     }
+    Entry min = entries.get(0);
+    for (Entry<K, V> entry: entries) {
+      if(min.getKey().compareTo(entry.getKey()) < 0) {
+        min = entry;
+      }
+    }
     return this.entries.get(this.size() -1);
   }
 
   @Override
   public VCPriorityQueue merge(VCPriorityQueue other) {
-    // TODO Auto-generated method stub
-    return null;
+    for (int i = 0; i < other.size(); i++ ) {
+      Entry entry = other.dequeueMin();
+      enqueue(entry.getKey(), entry.getValue());
+    }
+    return this;
   }
 }

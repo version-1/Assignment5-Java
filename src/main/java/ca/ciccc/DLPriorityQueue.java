@@ -1,6 +1,6 @@
 package ca.ciccc;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,7 +12,11 @@ public class DLPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
   private List<Entry<K, V>> entries;
 
   public DLPriorityQueue() {
-    this.entries = new ArrayList<Entry<K, V>>();
+    this.entries = new LinkedList<Entry<K, V>>();
+  }
+
+  public DLPriorityQueue(List<Entry<K, V>> entries) {
+    this.entries = entries;
   }
 
   public int size() {
@@ -52,7 +56,10 @@ public class DLPriorityQueue<K extends Comparable, V>  implements VCPriorityQueu
 
   @Override
   public VCPriorityQueue merge(VCPriorityQueue other) {
-    // TODO Auto-generated method stub
-    return null;
+    for (int i = 0; i < other.size(); i++ ) {
+      Entry entry = other.dequeueMin();
+      enqueue(entry.getKey(), entry.getValue());
+    }
+    return this;
   }
 }
