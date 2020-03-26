@@ -13,7 +13,11 @@ public class TestDLPriorityQueue {
 
     @Parameterized.Parameters(name = "{index}: @ca.ciccc.TestALPriority.isEmpty()")
     public static Collection<Object[]> data() {
+        DLPriorityQueue notEmpty = new DLPriorityQueue<String, Integer>();
+        notEmpty.enqueue("hoge", 1);
         return Arrays.asList(new Object[][] {
+             { new DLPriorityQueue<String, Integer>(), true },
+             { notEmpty, false }
         });
     }
 
