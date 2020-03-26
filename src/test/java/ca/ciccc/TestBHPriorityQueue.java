@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class TestALPriorityQueue {
+public class TestBHPriorityQueue {
 
     @Parameterized.Parameters(name = "{index}: @ca.ciccc.TestALPriority.isEmpty()")
     public static Collection<Object[]> data() {
@@ -18,7 +18,7 @@ public class TestALPriorityQueue {
     }
 
     @Parameterized.Parameter
-    public ALPriorityQueue inputs;
+    public BHPriorityQueue inputs;
 
     @Parameterized.Parameter(1)
     public boolean expected;
